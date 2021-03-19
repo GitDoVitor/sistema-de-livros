@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idLivro;
     private String titulo;
     @ManyToOne
     private Editora editora;

@@ -14,6 +14,6 @@ import javax.persistence.Id;
 public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idGenero;
     private String nome;
 }

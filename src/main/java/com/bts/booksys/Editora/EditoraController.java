@@ -1,11 +1,10 @@
 package com.bts.booksys.Editora;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/editoras")
@@ -21,5 +20,15 @@ public class EditoraController {
     @GetMapping
     List<Editora> mostraTodas() {
         return editoraService.listaEditoras();
+    }
+
+    @GetMapping("/{id}")
+    Optional<Editora> listaEditoraPorId(@PathVariable Long id) {
+        return editoraService.listaEditoraPorId(id);
+    }
+
+    @PostMapping
+    Editora criaEditora(@RequestBody Editora editora) {
+        return editoraService.salvaEditora(editora);
     }
 }

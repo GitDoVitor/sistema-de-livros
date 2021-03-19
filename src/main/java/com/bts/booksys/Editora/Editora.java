@@ -14,6 +14,6 @@ import javax.persistence.Id;
 public class Editora {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idEditora;
     private String nome;
 }
