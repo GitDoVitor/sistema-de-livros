@@ -1,4 +1,12 @@
 package com.bts.booksys.Livro;
 
-public interface LivroRepository {
+import com.bts.booksys.Genero.Genero;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface LivroRepository extends JpaRepository<Livro, Long> {
+    List<Livro> findAllByTitulo(String titulo);
 }
