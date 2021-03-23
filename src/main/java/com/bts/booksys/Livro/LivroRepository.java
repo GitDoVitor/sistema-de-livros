@@ -1,6 +1,5 @@
 package com.bts.booksys.Livro;
 
-import com.bts.booksys.Genero.Genero;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
