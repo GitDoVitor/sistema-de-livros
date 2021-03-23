@@ -19,7 +19,7 @@ public class AtendenteService {
         atendenteRepository.save(atendente);
     }
 
-    public List<Atendente> listaAtendentes() {
+    public List<?> listaAtendentes() {
         return atendenteRepository.findAll();
     }
 
