@@ -15,8 +15,9 @@ public class AtendenteService {
         this.atendenteRepository = atendenteRepository;
     }
 
-    public void salvaAtendente(Atendente atendente) {
+    public Atendente salvaAtendente(Atendente atendente) {
         atendenteRepository.save(atendente);
+        return atendente;
     }
 
     public List<?> listaAtendentes() {
