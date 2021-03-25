@@ -39,9 +39,9 @@ public class AutorController {
         autorService.deletaAutorPorId(id);
     }
 
-    @PutMapping
-    public ResponseEntity<?> editaAutor(@RequestBody Autor autor) {
-        autorService.editaAutor(autor);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> editaAutor(@PathVariable Long id, @RequestBody Autor autor) {
+        autorService.editaAutor(id, autor);
         return new ResponseEntity<>(autor, null, HttpStatus.ACCEPTED);
     }
 

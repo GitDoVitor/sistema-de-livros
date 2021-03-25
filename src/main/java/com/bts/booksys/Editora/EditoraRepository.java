@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface EditoraRepository extends JpaRepository<Editora, Long> {
-    Optional<Editora> findByIdEditora(Long id);
+    Editora findByIdEditora(Long id);
 }

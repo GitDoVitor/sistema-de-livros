@@ -16,17 +16,25 @@ public class EditoraService {
         this.editoraRepository = editoraRepository;
     }
 
-    List<Editora> listaEditoras(){
+    public List<Editora> listaEditoras(){
         return editoraRepository.findAll();
     }
 
-    Optional<Editora> listaEditoraPorId(Long id) {
+    public Editora listaEditoraPorId(Long id) {
         return editoraRepository.findByIdEditora(id);
     }
 
-    Editora salvaEditora(Editora editora) {
+    public Editora salvaEditora(Editora editora) {
         return editoraRepository.save(editora);
     }
 
+    public Editora editaEditora(Long id, Editora editora) {
+        Editora editora1 = editoraRepository.findByIdEditora(id);
+        editora1.setNome(editora.getNome());
+        return editoraRepository.save(editora1);
+    }
 
+    public void deletaEditora(Long id) {
+        editoraRepository.deleteById(id);
+    }
 }

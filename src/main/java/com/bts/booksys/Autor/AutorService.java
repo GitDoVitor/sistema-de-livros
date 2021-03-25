@@ -16,11 +16,11 @@ public class AutorService {
         this.autorRepository = autorRepository;
     }
 
-    public void salvaAutor(Autor autor) {
-        autorRepository.save(autor);
+    public Autor salvaAutor(Autor autor) {
+        return autorRepository.save(autor);
     }
 
-    public List<?> listaAutores() {
+    public List<Autor> listaAutores() {
         return autorRepository.findAll();
     }
 
@@ -29,12 +29,13 @@ public class AutorService {
     }
 
     public void deletaAutorPorId(Long id) {
-        Autor autor = autorRepository.findByIdAutor(id);
-        autorRepository.delete(autor);
+        autorRepository.deleteById(id);
     }
 
-    public Autor editaAutor(Autor autor) {
-        return autorRepository.save(autor);
+    public Autor editaAutor(Long id, Autor autor) {
+        Autor autor1 = autorRepository.findByIdAutor(id);
+        autor1.setNome(autor.getNome());
+        return autorRepository.save(autor1);
     }
 
 }

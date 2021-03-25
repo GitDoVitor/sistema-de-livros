@@ -23,7 +23,7 @@ public class EditoraController {
     }
 
     @GetMapping("/{id}")
-    Optional<Editora> listaEditoraPorId(@PathVariable Long id) {
+    Editora listaEditoraPorId(@PathVariable Long id) {
         return editoraService.listaEditoraPorId(id);
     }
 
