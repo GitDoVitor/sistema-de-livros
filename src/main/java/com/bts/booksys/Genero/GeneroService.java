@@ -16,8 +16,8 @@ public class GeneroService {
         this.generoRepository = generoRepository;
     }
 
-    public void salvaGenero(Genero genero) {
-        generoRepository.save(genero);
+    public Genero salvaGenero(Genero genero) {
+        return generoRepository.save(genero);
     }
 
     public List<?> listaGeneros() {
@@ -29,8 +29,7 @@ public class GeneroService {
     }
 
     public void deletaGeneroPorId(Long id) {
-        Genero genero = generoRepository.findByIdGenero(id);
-        generoRepository.delete(genero);
+        generoRepository.deleteById(id);
     }
 
     public Genero editaGenero(Genero genero) {
