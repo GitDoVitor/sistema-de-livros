@@ -29,8 +29,7 @@ public class AutorService {
     }
 
     public void deletaAutorPorId(Long id) {
-        Autor autor = autorRepository.findByIdAutor(id);
-        autorRepository.delete(autor);
+        autorRepository.deleteById(id);
     }
 
     public Autor editaAutor(Long id, Autor autor) {
