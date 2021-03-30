@@ -15,8 +15,9 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    public void salvaCliente(Cliente cliente) {
+    public Cliente salvaCliente(Cliente cliente) {
         clienteRepository.save(cliente);
+        return cliente;
     }
 
     public List<Cliente> listaClientes() {

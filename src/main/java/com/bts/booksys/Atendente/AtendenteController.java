@@ -26,7 +26,7 @@ public class AtendenteController {
     }
 
     @GetMapping
-    public List<?> listaAtendentes() {
+    public List<Atendente> listaAtendentes() {
         return atendenteService.listaAtendentes();
     }
 

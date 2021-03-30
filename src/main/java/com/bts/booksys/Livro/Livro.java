@@ -1,5 +1,6 @@
 package com.bts.booksys.Livro;
 
+import com.bts.booksys.Autor.Autor;
 import com.bts.booksys.Editora.Editora;
 import com.bts.booksys.Genero.Genero;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,9 +20,11 @@ public class Livro {
     private String titulo;
     @ManyToOne
     private Editora editora;
-    private Long ISBN;
+    @ManyToMany
+    private List<Autor> autor;
     @ManyToOne
     private Genero genero;
+    private Long ISBN;
     private Double preco;
     private Long edicao;
     private Long numPagina;

@@ -20,7 +20,7 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insereReserva(@RequestBody Reserva reserva) {
+    public ResponseEntity<Reserva> insereReserva(@RequestBody Reserva reserva) {
         reservaService.salvaReserva(reserva);
         return new ResponseEntity<>(reserva, null, HttpStatus.CREATED);
     }
@@ -46,4 +46,8 @@ public class ReservaController {
         return new ResponseEntity<>(reserva, null, HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/cancelar/{id}")
+    public void cancelaReservaPorId(@PathVariable Long id) {
+        reservaService.cancelaReserva(id);
+    }
 }

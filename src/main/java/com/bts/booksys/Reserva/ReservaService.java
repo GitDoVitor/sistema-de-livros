@@ -15,11 +15,12 @@ public class ReservaService {
         this.reservaRepository = reservaRepository;
     }
 
-    public void salvaReserva(Reserva reserva) {
+    public Reserva salvaReserva(Reserva reserva) {
         reservaRepository.save(reserva);
+        return reserva;
     }
 
-    public List<?> listaReservas() {
+    public List<Reserva> listaReservas() {
         return reservaRepository.findAll();
     }
 
@@ -34,5 +35,11 @@ public class ReservaService {
 
     public Reserva editaReserva(Reserva reserva) {
         return reservaRepository.save(reserva);
+    }
+
+    public Reserva cancelaReserva(Long id) {
+        Reserva reservaCancelada = reservaRepository.findByIdReserva(id);
+        reservaCancelada.setStatus(Status.CANCELADO);
+        return reservaCancelada;
     }
 }

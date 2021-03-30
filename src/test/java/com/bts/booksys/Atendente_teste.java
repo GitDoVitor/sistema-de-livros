@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -38,8 +39,12 @@ public class Atendente_teste {
         atendenteService.salvaAtendente(atendente1);
         atendenteService.salvaAtendente(atendente2);
 
-        List<Atendente> atendentesLista = (List<Atendente>) atendenteService.listaAtendentes();
-        Assertions.assertEquals(2, atendentesLista.size());
+        List<Atendente> atendentesModelo = new ArrayList<Atendente>();
+        atendentesModelo.add(atendente1);
+        atendentesModelo.add(atendente2);
+
+        List<Atendente> atendentesListados = atendenteService.listaAtendentes();
+        Assertions.assertEquals(atendentesModelo.size(), atendentesListados.size());
     }
 
     @Test

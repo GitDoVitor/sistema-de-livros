@@ -20,7 +20,7 @@ public class AtendenteService {
         return atendente;
     }
 
-    public List<?> listaAtendentes() {
+    public List<Atendente> listaAtendentes() {
         return atendenteRepository.findAll();
     }
 
