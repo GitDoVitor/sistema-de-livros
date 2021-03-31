@@ -1,7 +1,7 @@
 package com.bts.booksys;
 
-import com.bts.booksys.Genero.Genero;
-import com.bts.booksys.Genero.GeneroService;
+import com.bts.booksys.models.Genero;
+import com.bts.booksys.services.GeneroService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

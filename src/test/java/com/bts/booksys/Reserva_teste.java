@@ -1,8 +1,8 @@
 package com.bts.booksys;
 
-import com.bts.booksys.Reserva.Reserva;
-import com.bts.booksys.Reserva.ReservaService;
-import com.bts.booksys.Reserva.Status;
+import com.bts.booksys.models.Reserva;
+import com.bts.booksys.services.ReservaService;
+import com.bts.booksys.enums.StatusReserva;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class Reserva_teste {
         Reserva reserva = new Reserva();
         reserva.setDataInicial(LocalDate.now());
         reserva.setDataFinal(LocalDate.now());
-        reserva.setStatus(Status.RESERVADO);
+        reserva.setStatus(StatusReserva.RESERVADO);
         reserva.setValorTotal(400.00);
 
         Reserva reservaSalvo = reservaService.salvaReserva(reserva);
@@ -35,13 +35,13 @@ public class Reserva_teste {
         Reserva reserva1 = new Reserva();
         reserva1.setDataInicial(LocalDate.now());
         reserva1.setDataFinal(LocalDate.now());
-        reserva1.setStatus(Status.RESERVADO);
+        reserva1.setStatus(StatusReserva.RESERVADO);
         reserva1.setValorTotal(400.00);
 
         Reserva reserva2 = new Reserva();
         reserva2.setDataInicial(LocalDate.now());
         reserva2.setDataFinal(LocalDate.now());
-        reserva2.setStatus(Status.CANCELADO);
+        reserva2.setStatus(StatusReserva.CANCELADO);
         reserva2.setValorTotal(300.00);
 
         reservaService.salvaReserva(reserva1);
@@ -61,14 +61,14 @@ public class Reserva_teste {
         reserva1.setIdReserva(1L);
         reserva1.setDataInicial(LocalDate.now());
         reserva1.setDataFinal(LocalDate.now());
-        reserva1.setStatus(Status.RESERVADO);
+        reserva1.setStatus(StatusReserva.RESERVADO);
         reserva1.setValorTotal(400.00);
 
         Reserva reserva2 = new Reserva();
         reserva2.setIdReserva(1L);
         reserva2.setDataInicial(LocalDate.now());
         reserva2.setDataFinal(LocalDate.now());
-        reserva2.setStatus(Status.CANCELADO);
+        reserva2.setStatus(StatusReserva.CANCELADO);
         reserva2.setValorTotal(300.00);
 
         reservaService.salvaReserva(reserva1);
@@ -84,11 +84,11 @@ public class Reserva_teste {
         reserva1.setIdReserva(1L);
         reserva1.setDataInicial(LocalDate.now());
         reserva1.setDataFinal(LocalDate.of(2021, 9,9));
-        reserva1.setStatus(Status.RESERVADO);
+        reserva1.setStatus(StatusReserva.RESERVADO);
         reserva1.setValorTotal(400.00);
 
         reservaService.cancelaReserva(1L);
 
-        Assertions.assertEquals(reserva1.getStatus(), Status.CANCELADO);
+        Assertions.assertEquals(reserva1.getStatus(), StatusReserva.CANCELADO);
     }
 }

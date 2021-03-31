@@ -1,7 +1,7 @@
 package com.bts.booksys;
 
-import com.bts.booksys.Cliente.Cliente;
-import com.bts.booksys.Cliente.ClienteService;
+import com.bts.booksys.models.Cliente;
+import com.bts.booksys.services.ClienteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

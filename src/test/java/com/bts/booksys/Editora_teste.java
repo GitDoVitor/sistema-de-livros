@@ -1,7 +1,7 @@
 package com.bts.booksys;
 
-import com.bts.booksys.Editora.Editora;
-import com.bts.booksys.Editora.EditoraService;
+import com.bts.booksys.models.Editora;
+import com.bts.booksys.services.EditoraService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
