@@ -1,6 +1,6 @@
 package com.bts.booksys.models;
 
-import com.bts.booksys.enums.StatusReserva;
+import com.bts.booksys.enums.StatusEmprestimo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,16 +11,16 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Reserva {
+public class Emprestimo {
 
     @Id
     @GeneratedValue
-    private Long idReserva;
+    private Long idEmprestimo;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
     private LocalDate dataEntregue;
     private Double valorTotal;
-    private StatusReserva status;
+    private StatusEmprestimo status;
     @ManyToOne
     private Cliente cliente;
     @OneToMany
