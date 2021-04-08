@@ -20,7 +20,7 @@ public class Emprestimo_teste {
 
     @Test
     @Order(2)
-    void insereEmprestimo() {
+    void insereEmprestimo() throws Exception{
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.setDataInicial(LocalDate.now());
         emprestimo.setDataFinal(LocalDate.now());
@@ -33,7 +33,7 @@ public class Emprestimo_teste {
 
     @Test
     @Order(1)
-    void listaEmprestimos() {
+    void listaEmprestimos() throws Exception{
         Emprestimo emprestimo1 = new Emprestimo();
         emprestimo1.setDataInicial(LocalDate.now());
         emprestimo1.setDataFinal(LocalDate.now());
@@ -59,7 +59,7 @@ public class Emprestimo_teste {
 
     @Test
     @Order(3)
-    void listaEmprestimoPorId() {
+    void listaEmprestimoPorId() throws Exception{
         Emprestimo emprestimo1 = new Emprestimo();
         emprestimo1.setIdEmprestimo(1L);
         emprestimo1.setDataInicial(LocalDate.now());

@@ -9,11 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Exemplar{
+public class Exemplar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idExemplar;
+    @Column(unique=true)
     private Long ISBN;
     private StatusExemplar status;
     @ManyToOne

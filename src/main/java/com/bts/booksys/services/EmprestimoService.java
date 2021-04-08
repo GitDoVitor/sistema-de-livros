@@ -18,7 +18,10 @@ public class EmprestimoService {
         this.emprestimoRepository = emprestimoRepository;
     }
 
-    public Emprestimo salvaEmprestimo(Emprestimo emprestimo) {
+    public Emprestimo salvaEmprestimo(Emprestimo emprestimo) throws Exception{
+        if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) < 0) {
+            throw new Exception("Datas inválidas");
+        }
         emprestimoRepository.save(emprestimo);
         return emprestimo;
     }

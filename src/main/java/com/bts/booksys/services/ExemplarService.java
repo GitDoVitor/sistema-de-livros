@@ -1,5 +1,6 @@
 package com.bts.booksys.services;
 
+import com.bts.booksys.enums.StatusExemplar;
 import com.bts.booksys.models.Atendente;
 import com.bts.booksys.models.Exemplar;
 import com.bts.booksys.repositories.ExemplarRepository;
@@ -24,7 +25,7 @@ public class ExemplarService {
     }
 
     public List<Exemplar> listaExemplares() {
-        return exemplarRepository.findAll();
+        return exemplarRepository.findAllByStatus(StatusExemplar.DISPONIVEL);
     }
 
     public Exemplar listaExemplarPorId(Long id) {
