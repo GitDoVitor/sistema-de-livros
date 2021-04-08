@@ -21,7 +21,7 @@ public class EmprestimoController {
     }
 
     @PostMapping
-    public ResponseEntity<Emprestimo> insereEmprestimo(@RequestBody Emprestimo emprestimo) {
+    public ResponseEntity<Emprestimo> insereEmprestimo(@RequestBody Emprestimo emprestimo) throws Exception{
         emprestimoService.salvaEmprestimo(emprestimo);
         return new ResponseEntity<>(emprestimo, null, HttpStatus.CREATED);
     }
