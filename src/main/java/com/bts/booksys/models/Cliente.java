@@ -15,7 +15,10 @@ public class Cliente {
     @Id
     @GeneratedValue
     private Long idCliente;
+    @NotBlank
     private String nome;
     private String email;
+    @NotBlank
+    @Size(min = 9)
     private String telefone;
 }
