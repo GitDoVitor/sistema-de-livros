@@ -6,6 +6,7 @@ import com.bts.booksys.repositories.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class EmprestimoService {
     }
 
     public Emprestimo salvaEmprestimo(Emprestimo emprestimo) throws Exception{
-        if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) < 0) {
+        if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
             throw new Exception("Datas inválidas");
         }
         emprestimoRepository.save(emprestimo);
@@ -51,5 +52,14 @@ public class EmprestimoService {
         emprestimoCancelado.setStatus(StatusEmprestimo.CANCELADO);
         emprestimoRepository.save(emprestimoCancelado);
         return emprestimoCancelado;
+    }
+
+    public void renovaEmprestimoPorId(Long id, LocalDate novaDataFinal) throws Exception {
+        Emprestimo emprestimoRenovado = emprestimoRepository.findByIdEmprestimo(id);
+        if (emprestimoRenovado.getDataFinal().compareTo(novaDataFinal) >= 0) {
+            throw new Exception("Data inválida");
+        }
+        emprestimoRenovado.setDataFinal(novaDataFinal);
+        emprestimoRepository.save(emprestimoRenovado);
     }
 }

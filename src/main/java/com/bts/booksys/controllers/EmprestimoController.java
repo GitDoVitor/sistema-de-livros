@@ -1,12 +1,15 @@
 package com.bts.booksys.controllers;
 
+import com.bts.booksys.enums.StatusEmprestimo;
 import com.bts.booksys.services.EmprestimoService;
 import com.bts.booksys.models.Emprestimo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -50,5 +53,11 @@ public class EmprestimoController {
     @PutMapping("/cancelar/{id}")
     public void cancelaEmprestimoPorId(@PathVariable Long id) throws Exception {
         emprestimoService.cancelaEmprestimoPorId(id);
+    }
+
+    @PutMapping("/renovar/{id}/{dataFinal}")
+    public void renovaEmprestimoPorId(@PathVariable Long id, @PathVariable(value = "dataFinal")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) throws Exception {
+        emprestimoService.renovaEmprestimoPorId(id, dataFinal);
     }
 }
