@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,10 +17,15 @@ public class Emprestimo {
     @Id
     @GeneratedValue
     private Long idEmprestimo;
+    @NotBlank
     private LocalDate dataInicial;
+    @NotBlank
     private LocalDate dataFinal;
+    @NotBlank
     private LocalDate dataEntregue;
+    @NotBlank
     private Double valorTotal;
+    @NotBlank
     private StatusEmprestimo status;
     @ManyToOne
     private Cliente cliente;

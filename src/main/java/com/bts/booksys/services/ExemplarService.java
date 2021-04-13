@@ -24,7 +24,7 @@ public class ExemplarService {
         return exemplar;
     }
 
-    public List<Exemplar> listaExemplares() {
+    public List<Exemplar> listaExemplaresDisponiveis() {
         return exemplarRepository.findAllByStatus(StatusExemplar.DISPONIVEL);
     }
 

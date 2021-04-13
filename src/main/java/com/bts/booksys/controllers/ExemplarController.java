@@ -30,7 +30,7 @@ public class ExemplarController {
 
     @GetMapping
     public List<Exemplar> listaExemplares() {
-        return exemplarService.listaExemplares();
+        return exemplarService.listaExemplaresDisponiveis();
     }
 
     @GetMapping("/{id}")
