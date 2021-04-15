@@ -3,6 +3,7 @@ package com.bts.booksys.repositories;
 import com.bts.booksys.enums.StatusExemplar;
 import com.bts.booksys.models.Exemplar;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
