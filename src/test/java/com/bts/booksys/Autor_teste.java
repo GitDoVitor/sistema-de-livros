@@ -50,11 +50,9 @@ public class Autor_teste {
         autor2.setNome("J. K. Rowling");
 
         autorService.salvaAutor(autor1);
-        Autor autorNovo = autorService.salvaAutor(autor2);
-
-        autorNovo.setNome("Taran Matharu");
-
-        autorService.editaAutor(2L, autorNovo);
+        autorService.salvaAutor(autor2);
+        autorService.editaAutor(2L, "Taran Matharu");
+        autorService.salvaAutor(autor2);
 
         Autor teste = autorService.listaAutorPorId(2L);
         Assertions.assertEquals("Taran Matharu", teste.getNome() );

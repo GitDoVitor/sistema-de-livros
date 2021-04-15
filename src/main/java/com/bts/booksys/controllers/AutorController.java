@@ -41,9 +41,8 @@ public class AutorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editaAutor(@PathVariable Long id, @RequestBody Autor autor) {
-        autorService.editaAutor(id, autor);
-        return new ResponseEntity<>(autor, null, HttpStatus.ACCEPTED);
+    public void editaAutor(@PathVariable Long id, String nome) {
+        autorService.editaAutor(id, nome);
     }
 
 }

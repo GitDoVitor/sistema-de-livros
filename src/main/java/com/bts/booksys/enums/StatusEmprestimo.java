@@ -1,5 +1,5 @@
 package com.bts.booksys.enums;
 
 public enum StatusEmprestimo {
-    RESERVADO, REALIZADO, EM_ANDAMENTO, CANCELADO
+    RESERVADO, EM_ANDAMENTO, REALIZADO, CANCELADO
 }

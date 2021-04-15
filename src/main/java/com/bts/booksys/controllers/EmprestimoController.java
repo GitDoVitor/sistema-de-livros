@@ -29,6 +29,12 @@ public class EmprestimoController {
         return new ResponseEntity<>(emprestimo, null, HttpStatus.CREATED);
     }
 
+    @PostMapping("/reserva")
+    public ResponseEntity<Emprestimo> reservaEmprestimo(@RequestBody Emprestimo emprestimo) throws Exception{
+        emprestimoService.reservaEmprestimo(emprestimo);
+        return new ResponseEntity<>(emprestimo, null, HttpStatus.CREATED);
+    }
+
     @GetMapping
     public List<Emprestimo> listaEmprestimos() {
         return emprestimoService.listaEmprestimos();
@@ -53,6 +59,11 @@ public class EmprestimoController {
     @PutMapping("/cancelar/{id}")
     public void cancelaEmprestimoPorId(@PathVariable Long id) throws Exception {
         emprestimoService.cancelaEmprestimoPorId(id);
+    }
+
+    @PutMapping("/iniciar/{id}")
+    public void iniciaEmprestimoPorId(@PathVariable Long id) throws Exception {
+        emprestimoService.iniciaEmprestimoPorId(id);
     }
 
     @PutMapping("/renovar/{id}/{dataFinal}")

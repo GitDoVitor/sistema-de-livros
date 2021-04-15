@@ -23,8 +23,27 @@ public class EmprestimoService {
         if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
             throw new Exception("Datas inválidas");
         }
+        emprestimo.setStatus(StatusEmprestimo.EM_ANDAMENTO);
         emprestimoRepository.save(emprestimo);
         return emprestimo;
+    }
+
+    public Emprestimo reservaEmprestimo(Emprestimo emprestimo) throws Exception{
+        if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
+            throw new Exception("Datas inválidas");
+        }
+        emprestimo.setStatus(StatusEmprestimo.RESERVADO);
+        emprestimoRepository.save(emprestimo);
+        return emprestimo;
+    }
+
+    public void iniciaEmprestimoPorId(Long id) throws Exception{
+        Emprestimo emprestimoIniciado = emprestimoRepository.findByIdEmprestimo(id);
+        if (emprestimoIniciado.getStatus() != StatusEmprestimo.RESERVADO) {
+            throw new Exception("Emprestimo não está reservado");
+        }
+        emprestimoIniciado.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimoRepository.save(emprestimoIniciado);
     }
 
     public List<Emprestimo> listaEmprestimos() {

@@ -1,8 +1,9 @@
 package com.bts.booksys.services;
 
 import com.bts.booksys.enums.StatusExemplar;
-import com.bts.booksys.models.Atendente;
+import com.bts.booksys.models.Emprestimo;
 import com.bts.booksys.models.Exemplar;
+import com.bts.booksys.repositories.EmprestimoRepository;
 import com.bts.booksys.repositories.ExemplarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,41 @@ public class ExemplarService {
         this.exemplarRepository = exemplarRepository;
     }
 
+    @Autowired
+    EmprestimoRepository emprestimoRepository;
+
     public Exemplar salvaExemplar(Exemplar exemplar) {
         exemplarRepository.save(exemplar);
         return exemplar;
     }
 
-    public List<Exemplar> listaExemplaresDisponiveis() {
-        return exemplarRepository.findAllByStatus(StatusExemplar.DISPONIVEL);
+    public List<Exemplar> listaExemplaresDisponiveis(LocalDate dataInicial, LocalDate dataFinal) {
+
+        List<Exemplar> listaNaoFiltrada = exemplarRepository.findAllByStatus(StatusExemplar.DISPONIVEL);
+        List<Emprestimo> listaDeEmprestimos = emprestimoRepository.findAll();
+        List<Emprestimo> listaDeConflitos = null;
+        List<List<Exemplar>> listaDeExemplaresComConflito = null;
+
+        for(Emprestimo temp : listaDeEmprestimos){
+
+            if(temp.getDataInicial().compareTo(dataInicial) > 0 && temp.getDataInicial().compareTo(dataFinal) < 0) {
+                listaDeConflitos.add(temp);
+            } else if(temp.getDataFinal().compareTo(dataInicial) > 0 && temp.getDataFinal().compareTo(dataFinal) < 0) {
+                listaDeConflitos.add(temp);
+            } else if(temp.getDataInicial().compareTo(dataInicial) < 0 && temp.getDataFinal().compareTo(dataFinal) > 0) {
+                listaDeConflitos.add(temp);
+            }
+        }
+
+        for(Emprestimo temp2 : listaDeConflitos) {
+            listaDeExemplaresComConflito.add(temp2.getExemplares());
+        }
+
+        return listaNaoFiltrada.stream()
+                                .filter(e -> !listaDeExemplaresComConflito.contains(e))
+                                .collect (Collectors.toList());
     }
+
 
     public Exemplar listaExemplarPorId(Long id) {
         return exemplarRepository.findByIdExemplar(id);

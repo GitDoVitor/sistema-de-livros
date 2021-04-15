@@ -5,10 +5,12 @@ import com.bts.booksys.models.Exemplar;
 import com.bts.booksys.services.AtendenteService;
 import com.bts.booksys.services.ExemplarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -29,8 +31,10 @@ public class ExemplarController {
     }
 
     @GetMapping
-    public List<Exemplar> listaExemplares() {
-        return exemplarService.listaExemplaresDisponiveis();
+    public List<Exemplar> listaExemplaresDisponiveisPorData(@PathVariable(value = "dataInicial")
+                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
+                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
+        return exemplarService.listaExemplaresDisponiveis(dataInicial, dataFinal);
     }
 
     @GetMapping("/{id}")

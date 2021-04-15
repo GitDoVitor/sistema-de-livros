@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     Emprestimo findByIdEmprestimo(Long id);
+
+//    @Query("SELECT * FROM Emprestimos")
+//    List<Emprestimo>
+
 }
