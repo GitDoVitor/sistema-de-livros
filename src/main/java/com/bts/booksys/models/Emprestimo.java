@@ -29,6 +29,6 @@ public class Emprestimo {
     private StatusEmprestimo status;
     @ManyToOne
     private Cliente cliente;
-    @OneToMany
-    private List<Exemplar> exemplares;
+    @OneToOne
+    private Exemplar exemplar;
 }

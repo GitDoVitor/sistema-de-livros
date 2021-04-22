@@ -30,12 +30,19 @@ public class ExemplarController {
         return new ResponseEntity<>(exemplar, null, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/{dataInicial}/{dataFinal}")
     public List<Exemplar> listaExemplaresDisponiveisPorData(@PathVariable(value = "dataInicial")
                                                 @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
                                                 @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
-        return exemplarService.listaExemplaresDisponiveis(dataInicial, dataFinal);
+        return exemplarService.listaExemplaresDisponiveisPorData(dataInicial, dataFinal);
     }
+
+//    @GetMapping("/{livro}/{dataInicial}/{dataFinal}")
+//    public List<Exemplar> listaLivroDisponiveisPorData(@PathVariable String livro, @PathVariable(value = "dataInicial")
+//                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
+//                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
+//        return exemplarService.listaLivroDisponivelPorData(livro, dataInicial, dataFinal);
+//    }
 
     @GetMapping("/{id}")
     public Exemplar listaExemplarPorId(@PathVariable Long id) {
@@ -45,6 +52,11 @@ public class ExemplarController {
     @DeleteMapping("/{id}")
     public void deletaExemplarPorId(Long id) {
         exemplarService.deletaExemplarPorId(id);
+    }
+
+    @GetMapping("/livro/{titulo}")
+    public List<Exemplar> listaExemplaresPorTituloDeLivro(@PathVariable String titulo) {
+        return exemplarService.listaExemplaresPorTituloDeLivro(titulo);
     }
 
     @PutMapping

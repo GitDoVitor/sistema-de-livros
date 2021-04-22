@@ -45,6 +45,11 @@ public class EmprestimoController {
         return emprestimoService.listaEmprestimoPorId(id);
     }
 
+    @GetMapping("/livro/{nome}")
+    public List<Emprestimo> listaEmprestimosPorLivro(@PathVariable String nome) {
+        return emprestimoService.listaEmprestimosPorLivro(nome);
+    }
+
     @DeleteMapping("/{id}")
     public void deletaEmprestimoPorId(Long id) {
         emprestimoService.deletaEmprestimoPorId(id);

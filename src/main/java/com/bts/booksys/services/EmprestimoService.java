@@ -54,6 +54,10 @@ public class EmprestimoService {
         return emprestimoRepository.findByIdEmprestimo(id);
     }
 
+    public List<Emprestimo> listaEmprestimosPorLivro(String nome) {
+        return emprestimoRepository.findAllByExemplar_Livro_titulo(nome);
+    }
+
     public void deletaEmprestimoPorId(Long id) {
         Emprestimo emprestimo = emprestimoRepository.findByIdEmprestimo(id);
         emprestimoRepository.delete(emprestimo);

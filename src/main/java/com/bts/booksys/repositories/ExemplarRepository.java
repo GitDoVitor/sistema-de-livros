@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface ExemplarRepository extends JpaRepository<Exemplar, Long> {
     Exemplar findByIdExemplar(Long id);
+    List<Exemplar> findAllByLivro_titulo(String titulo);
     List<Exemplar> findAllByStatus(StatusExemplar statusExemplar);
 }

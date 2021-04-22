@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,36 +32,66 @@ public class ExemplarService {
         return exemplar;
     }
 
-    public List<Exemplar> listaExemplaresDisponiveis(LocalDate dataInicial, LocalDate dataFinal) {
+    public List<Exemplar> listaExemplaresDisponiveisPorData(LocalDate dataInicial, LocalDate dataFinal) {
 
-        List<Exemplar> listaNaoFiltrada = exemplarRepository.findAllByStatus(StatusExemplar.DISPONIVEL);
+        List<Exemplar> listaNaoFiltrada = exemplarRepository.findAll();
         List<Emprestimo> listaDeEmprestimos = emprestimoRepository.findAll();
-        List<Emprestimo> listaDeConflitos = null;
-        List<List<Exemplar>> listaDeExemplaresComConflito = null;
+        List<Emprestimo> listaDeConflitos = new ArrayList<>();
+        List<Exemplar> listaDeExemplaresComConflito = new ArrayList<>();
 
         for(Emprestimo temp : listaDeEmprestimos){
-
-            if(temp.getDataInicial().compareTo(dataInicial) > 0 && temp.getDataInicial().compareTo(dataFinal) < 0) {
+            if(temp.getDataInicial().compareTo(dataInicial) <= 0 && temp.getDataFinal().compareTo(dataFinal) >= 0) {
                 listaDeConflitos.add(temp);
-            } else if(temp.getDataFinal().compareTo(dataInicial) > 0 && temp.getDataFinal().compareTo(dataFinal) < 0) {
+            } else if(temp.getDataFinal().compareTo(dataInicial) >= 0 && temp.getDataFinal().compareTo(dataFinal) <= 0) {
                 listaDeConflitos.add(temp);
-            } else if(temp.getDataInicial().compareTo(dataInicial) < 0 && temp.getDataFinal().compareTo(dataFinal) > 0) {
+            } else if(temp.getDataInicial().compareTo(dataInicial) >= 0 && temp.getDataInicial().compareTo(dataFinal) <= 0) {
                 listaDeConflitos.add(temp);
             }
         }
 
         for(Emprestimo temp2 : listaDeConflitos) {
-            listaDeExemplaresComConflito.add(temp2.getExemplares());
+            listaDeExemplaresComConflito.add(temp2.getExemplar());
         }
 
         return listaNaoFiltrada.stream()
-                                .filter(e -> !listaDeExemplaresComConflito.contains(e))
-                                .collect (Collectors.toList());
+                .filter(e -> !listaDeExemplaresComConflito.contains(e))
+                .collect (Collectors.toList());
     }
 
+    public Long listaLivroDisponivelPorData(String nomeDoLivro, LocalDate dataInicial, LocalDate dataFinal) {
+
+        List<Exemplar> listaNaoFiltrada = exemplarRepository.findAllByLivro_titulo(nomeDoLivro);
+        List<Emprestimo> listaDeEmprestimos = emprestimoRepository.findAllByExemplar_Livro_titulo(nomeDoLivro);
+        List<Emprestimo> listaDeConflitos = new ArrayList<>();
+        List<Exemplar> listaDeExemplaresComConflito = new ArrayList<>();
+
+        for(Emprestimo temp : listaDeEmprestimos){
+            if(temp.getDataInicial().compareTo(dataInicial) <= 0 && temp.getDataFinal().compareTo(dataFinal) >= 0) {
+                listaDeConflitos.add(temp);
+            } else if(temp.getDataFinal().compareTo(dataInicial) >= 0 && temp.getDataFinal().compareTo(dataFinal) <= 0) {
+                listaDeConflitos.add(temp);
+            } else if(temp.getDataInicial().compareTo(dataInicial) >= 0 && temp.getDataInicial().compareTo(dataFinal) <= 0) {
+                listaDeConflitos.add(temp);
+            }
+        }
+
+        for(Emprestimo temp2 : listaDeConflitos) {
+            listaDeExemplaresComConflito.add(temp2.getExemplar());
+        }
+
+        List<Exemplar> listaFiltrada = listaNaoFiltrada.stream()
+                .filter(e -> !listaDeExemplaresComConflito.contains(e))
+                .collect (Collectors.toList());
+
+        return (long) listaFiltrada.size();
+    }
 
     public Exemplar listaExemplarPorId(Long id) {
         return exemplarRepository.findByIdExemplar(id);
+    }
+
+    public List<Exemplar> listaExemplaresPorTituloDeLivro(String titulo) {
+        return exemplarRepository.findAllByLivro_titulo(titulo);
     }
 
     public void deletaExemplarPorId(Long id) {
