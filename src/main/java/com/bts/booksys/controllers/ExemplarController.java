@@ -1,8 +1,6 @@
 package com.bts.booksys.controllers;
 
-import com.bts.booksys.models.Atendente;
 import com.bts.booksys.models.Exemplar;
-import com.bts.booksys.services.AtendenteService;
 import com.bts.booksys.services.ExemplarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,12 +35,12 @@ public class ExemplarController {
         return exemplarService.listaExemplaresDisponiveisPorData(dataInicial, dataFinal);
     }
 
-//    @GetMapping("/{livro}/{dataInicial}/{dataFinal}")
-//    public List<Exemplar> listaLivroDisponiveisPorData(@PathVariable String livro, @PathVariable(value = "dataInicial")
-//                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
-//                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
-//        return exemplarService.listaLivroDisponivelPorData(livro, dataInicial, dataFinal);
-//    }
+    @GetMapping("/{livro}/{dataInicial}/{dataFinal}")
+    public List<Exemplar> listaLivroDisponiveisPorData(@PathVariable String livro, @PathVariable(value = "dataInicial")
+                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
+                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
+        return exemplarService.listaLivroDisponivelPorData(livro, dataInicial, dataFinal);
+    }
 
     @GetMapping("/{id}")
     public Exemplar listaExemplarPorId(@PathVariable Long id) {

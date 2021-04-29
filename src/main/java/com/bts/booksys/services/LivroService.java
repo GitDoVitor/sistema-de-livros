@@ -31,8 +31,10 @@ public class LivroService {
     public Optional<Livro> listaPorID(Long id){
         return livroRepository.findById(id);
     }
-//    TODO
-//    public List<Livro> listaPorGenero()
+
+    public List<Livro> listaTodosPorGenero(String genero) {
+        return livroRepository.findAllByGenero_Nome(genero);
+    }
 
     public void apagaUm(Long id) {
         livroRepository.deleteById(id);

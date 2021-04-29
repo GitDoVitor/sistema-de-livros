@@ -19,14 +19,19 @@ public class LivroController {
         this.livroService = livroService;
     }
 
-    @GetMapping("/todos")
+    @GetMapping
     List<Livro> listaTodosLivros() {
         return livroService.listaTodos();
     }
 
-    @GetMapping("/{titulo}")
+    @GetMapping("/titulo/{titulo}")
     List<Livro> listaTodosPeloTitulo(@PathVariable String titulo) {
         return livroService.listaTodosPorTitulo(titulo);
+    }
+
+    @GetMapping("/genero/{genero}")
+    List<Livro> listaTodosPeloGenero(@PathVariable String genero) {
+        return livroService.listaTodosPorGenero(genero);
     }
 
     @GetMapping("/{id}")

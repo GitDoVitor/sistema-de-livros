@@ -20,14 +20,14 @@ public class Emprestimo_teste {
 
     @Test
     @Order(2)
-    void insereEmprestimo() throws Exception{
+    void reservaEmprestimo() throws Exception{
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.setDataInicial(LocalDate.now());
         emprestimo.setDataFinal(LocalDate.now());
         emprestimo.setStatus(StatusEmprestimo.EM_ANDAMENTO);
         emprestimo.setValorTotal(400.00);
 
-        Emprestimo emprestimoSalvo = emprestimoService.salvaEmprestimo(emprestimo);
+        Emprestimo emprestimoSalvo = emprestimoService.reservaEmprestimo(emprestimo);
         Assertions.assertEquals(emprestimo, emprestimoSalvo);
     }
 
@@ -46,8 +46,8 @@ public class Emprestimo_teste {
         emprestimo2.setStatus(StatusEmprestimo.CANCELADO);
         emprestimo2.setValorTotal(300.00);
 
-        emprestimoService.salvaEmprestimo(emprestimo1);
-        emprestimoService.salvaEmprestimo(emprestimo2);
+        emprestimoService.reservaEmprestimo(emprestimo1);
+        emprestimoService.reservaEmprestimo(emprestimo2);
 
         List<Emprestimo> emprestimosModelo = new ArrayList<Emprestimo>();
         emprestimosModelo.add(emprestimo1);
@@ -74,8 +74,8 @@ public class Emprestimo_teste {
         emprestimo2.setStatus(StatusEmprestimo.CANCELADO);
         emprestimo2.setValorTotal(300.00);
 
-        emprestimoService.salvaEmprestimo(emprestimo1);
-        emprestimoService.salvaEmprestimo(emprestimo2);
+        emprestimoService.reservaEmprestimo(emprestimo1);
+        emprestimoService.reservaEmprestimo(emprestimo2);
 
         Emprestimo emprestimoComId2 = emprestimoService.listaEmprestimoPorId(2L);
         Assertions.assertNotNull(emprestimoComId2);
@@ -91,7 +91,7 @@ public class Emprestimo_teste {
         emprestimo1.setStatus(StatusEmprestimo.EM_ANDAMENTO);
         emprestimo1.setValorTotal(400.00);
 
-        emprestimoService.salvaEmprestimo(emprestimo1);
+        emprestimoService.reservaEmprestimo(emprestimo1);
         Emprestimo emprestimoCancelado = emprestimoService.cancelaEmprestimoPorId(1L);
 
         Assertions.assertEquals(emprestimoCancelado.getStatus(), StatusEmprestimo.CANCELADO);

@@ -23,11 +23,6 @@ public class EmprestimoController {
         this.emprestimoService = emprestimoService;
     }
 
-    @PostMapping
-    public ResponseEntity<Emprestimo> insereEmprestimo(@RequestBody Emprestimo emprestimo) throws Exception{
-        emprestimoService.salvaEmprestimo(emprestimo);
-        return new ResponseEntity<>(emprestimo, null, HttpStatus.CREATED);
-    }
 
     @PostMapping("/reserva")
     public ResponseEntity<Emprestimo> reservaEmprestimo(@RequestBody Emprestimo emprestimo) throws Exception{

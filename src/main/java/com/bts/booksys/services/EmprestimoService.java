@@ -19,15 +19,6 @@ public class EmprestimoService {
         this.emprestimoRepository = emprestimoRepository;
     }
 
-    public Emprestimo salvaEmprestimo(Emprestimo emprestimo) throws Exception{
-        if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
-            throw new Exception("Datas inválidas");
-        }
-        emprestimo.setStatus(StatusEmprestimo.EM_ANDAMENTO);
-        emprestimoRepository.save(emprestimo);
-        return emprestimo;
-    }
-
     public Emprestimo reservaEmprestimo(Emprestimo emprestimo) throws Exception{
         if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
             throw new Exception("Datas inválidas");

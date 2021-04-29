@@ -58,7 +58,7 @@ public class ExemplarService {
                 .collect (Collectors.toList());
     }
 
-    public Long listaLivroDisponivelPorData(String nomeDoLivro, LocalDate dataInicial, LocalDate dataFinal) {
+    public List<Exemplar> listaLivroDisponivelPorData(String nomeDoLivro, LocalDate dataInicial, LocalDate dataFinal) {
 
         List<Exemplar> listaNaoFiltrada = exemplarRepository.findAllByLivro_titulo(nomeDoLivro);
         List<Emprestimo> listaDeEmprestimos = emprestimoRepository.findAllByExemplar_Livro_titulo(nomeDoLivro);
@@ -83,7 +83,7 @@ public class ExemplarService {
                 .filter(e -> !listaDeExemplaresComConflito.contains(e))
                 .collect (Collectors.toList());
 
-        return (long) listaFiltrada.size();
+        return listaFiltrada;
     }
 
     public Exemplar listaExemplarPorId(Long id) {
