@@ -1,7 +1,5 @@
 package com.bts.booksys;
 
-import com.bts.booksys.models.Atendente;
-import com.bts.booksys.services.AtendenteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

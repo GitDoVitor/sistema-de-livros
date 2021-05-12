@@ -27,8 +27,9 @@ public class Emprestimo {
     private Double valorTotal;
     @NotBlank
     private StatusEmprestimo status;
-    @ManyToOne
-    private Cliente cliente;
     @OneToOne
     private Exemplar exemplar;
+
+    private String nomeCliente;
+    private String telefoneCliente;
 }
