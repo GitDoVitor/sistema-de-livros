@@ -1,14 +1,14 @@
 package com.bts.booksys.controllers;
 
-import com.bts.booksys.models.Atendente;
 import com.bts.booksys.models.Exemplar;
-import com.bts.booksys.services.AtendenteService;
 import com.bts.booksys.services.ExemplarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -28,9 +28,18 @@ public class ExemplarController {
         return new ResponseEntity<>(exemplar, null, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public List<Exemplar> listaExemplares() {
-        return exemplarService.listaExemplaresDisponiveis();
+    @GetMapping("/{dataInicial}/{dataFinal}")
+    public List<Exemplar> listaExemplaresDisponiveisPorData(@PathVariable(value = "dataInicial")
+                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
+                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
+        return exemplarService.listaExemplaresDisponiveisPorData(dataInicial, dataFinal);
+    }
+
+    @GetMapping("/{livro}/{dataInicial}/{dataFinal}")
+    public List<Exemplar> listaLivroDisponiveisPorData(@PathVariable String livro, @PathVariable(value = "dataInicial")
+                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataInicial , @PathVariable(value = "dataFinal")
+                                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dataFinal) {
+        return exemplarService.listaLivroDisponivelPorData(livro, dataInicial, dataFinal);
     }
 
     @GetMapping("/{id}")
@@ -41,6 +50,11 @@ public class ExemplarController {
     @DeleteMapping("/{id}")
     public void deletaExemplarPorId(Long id) {
         exemplarService.deletaExemplarPorId(id);
+    }
+
+    @GetMapping("/livro/{titulo}")
+    public List<Exemplar> listaExemplaresPorTituloDeLivro(@PathVariable String titulo) {
+        return exemplarService.listaExemplaresPorTituloDeLivro(titulo);
     }
 
     @PutMapping

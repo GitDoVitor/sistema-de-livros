@@ -15,20 +15,21 @@ import java.util.List;
 public class Emprestimo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmprestimo;
-    @NotBlank
+//    @NotBlank
     private LocalDate dataInicial;
-    @NotBlank
+//    @NotBlank
     private LocalDate dataFinal;
-    @NotBlank
+//    @NotBlank
     private LocalDate dataEntregue;
-    @NotBlank
+//    @NotBlank
     private Double valorTotal;
-    @NotBlank
+//    @NotBlank
     private StatusEmprestimo status;
-    @ManyToOne
-    private Cliente cliente;
-    @OneToMany
-    private List<Exemplar> exemplares;
+    @OneToOne
+    private Exemplar exemplar;
+
+    private String nomeCliente;
+    private String telefoneCliente;
 }

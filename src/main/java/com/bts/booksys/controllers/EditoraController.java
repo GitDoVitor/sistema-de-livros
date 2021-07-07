@@ -3,11 +3,14 @@ package com.bts.booksys.controllers;
 import com.bts.booksys.services.EditoraService;
 import com.bts.booksys.models.Editora;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/editoras")
 public class EditoraController {
     final
@@ -28,8 +31,14 @@ public class EditoraController {
         return editoraService.listaEditoraPorId(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deletaEditora(@PathVariable Long id) {
+        editoraService.deletaEditora(id);
+    }
+
     @PostMapping
-    Editora criaEditora(@RequestBody Editora editora) {
-        return editoraService.salvaEditora(editora);
+    public ResponseEntity<Editora> criaEditora(@RequestBody Editora editora) {
+        editoraService.salvaEditora(editora);
+        return new ResponseEntity<>(editora, null, HttpStatus.CREATED);
     }
 }

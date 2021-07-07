@@ -19,12 +19,22 @@ public class EmprestimoService {
         this.emprestimoRepository = emprestimoRepository;
     }
 
-    public Emprestimo salvaEmprestimo(Emprestimo emprestimo) throws Exception{
+    public Emprestimo reservaEmprestimo(Emprestimo emprestimo) throws Exception{
         if (emprestimo.getDataFinal().compareTo(emprestimo.getDataInicial()) <= 0) {
             throw new Exception("Datas inválidas");
         }
+        emprestimo.setStatus(StatusEmprestimo.RESERVADO);
         emprestimoRepository.save(emprestimo);
         return emprestimo;
+    }
+
+    public void iniciaEmprestimoPorId(Long id) throws Exception{
+        Emprestimo emprestimoIniciado = emprestimoRepository.findByIdEmprestimo(id);
+        if (emprestimoIniciado.getStatus() != StatusEmprestimo.RESERVADO) {
+            throw new Exception("Emprestimo não está reservado");
+        }
+        emprestimoIniciado.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimoRepository.save(emprestimoIniciado);
     }
 
     public List<Emprestimo> listaEmprestimos() {
@@ -33,6 +43,10 @@ public class EmprestimoService {
 
     public Emprestimo listaEmprestimoPorId(Long id) {
         return emprestimoRepository.findByIdEmprestimo(id);
+    }
+
+    public List<Emprestimo> listaEmprestimosPorLivro(String nome) {
+        return emprestimoRepository.findAllByExemplar_Livro_titulo(nome);
     }
 
     public void deletaEmprestimoPorId(Long id) {

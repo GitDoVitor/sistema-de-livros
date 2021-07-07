@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AutorService {
@@ -33,9 +34,9 @@ public class AutorService {
         autorRepository.deleteById(id);
     }
 
-    public Autor editaAutor(Long id, Autor autor) {
+    public Autor editaAutor(Long id, String nome) {
         Autor autor1 = autorRepository.findByIdAutor(id);
-        autor1.setNome(autor.getNome());
+        autor1.setNome(nome);
         return autorRepository.save(autor1);
     }
 
