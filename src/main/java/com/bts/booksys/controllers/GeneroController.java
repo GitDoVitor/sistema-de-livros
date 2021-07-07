@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/generos")
 public class GeneroController {
 
@@ -22,7 +23,7 @@ public class GeneroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insereGenero(@RequestBody Genero genero) {
+    public ResponseEntity<Genero> insereGenero(@RequestBody Genero genero) {
         generoService.salvaGenero(genero);
         return new ResponseEntity<>(genero, null, HttpStatus.CREATED);
     }
@@ -38,13 +39,8 @@ public class GeneroController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletaGeneroPorId(Long id) {
+    public void deletaGeneroPorId(@PathVariable Long id) {
         generoService.deletaGeneroPorId(id);
     }
 
-    @PutMapping
-    public ResponseEntity<?> editaGenero(@RequestBody Genero genero) {
-        generoService.editaGenero(genero);
-        return new ResponseEntity<>(genero, null, HttpStatus.ACCEPTED);
-    }
 }

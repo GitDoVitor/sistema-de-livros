@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/emprestimos")
 public class EmprestimoController {
@@ -46,7 +47,7 @@ public class EmprestimoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletaEmprestimoPorId(Long id) {
+    public void deletaEmprestimoPorId(@PathVariable Long id) {
         emprestimoService.deletaEmprestimoPorId(id);
     }
 
