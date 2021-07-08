@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/exemplares")
 public class ExemplarController {
 
@@ -48,7 +49,7 @@ public class ExemplarController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletaExemplarPorId(Long id) {
+    public void deletaExemplarPorId(@PathVariable Long id) {
         exemplarService.deletaExemplarPorId(id);
     }
 
@@ -61,5 +62,10 @@ public class ExemplarController {
     public ResponseEntity<Exemplar> editaExemplar(@RequestBody Exemplar exemplar) {
         exemplarService.editaExemplar(exemplar);
         return new ResponseEntity<>(exemplar, null, HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping
+    public List<Exemplar> listaTodosExemplares() {
+        return exemplarService.listaTodosExemplares();
     }
 }
