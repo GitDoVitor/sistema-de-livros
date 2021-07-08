@@ -102,4 +102,8 @@ public class ExemplarService {
     public Exemplar editaExemplar(Exemplar exemplar) {
         return exemplarRepository.save(exemplar);
     }
+
+    public List<Exemplar> listaTodosExemplares() {
+        return exemplarRepository.findAll();
+    }
 }
