@@ -24,7 +24,7 @@ public class Emprestimo_teste {
         Emprestimo emprestimo = new Emprestimo();
         emprestimo.setDataInicial(LocalDate.now());
         emprestimo.setDataFinal(LocalDate.now());
-        emprestimo.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimo.setStatus(StatusEmprestimo.EMANDAMENTO);
         emprestimo.setValorTotal(400.00);
 
         Emprestimo emprestimoSalvo = emprestimoService.reservaEmprestimo(emprestimo);
@@ -37,7 +37,7 @@ public class Emprestimo_teste {
         Emprestimo emprestimo1 = new Emprestimo();
         emprestimo1.setDataInicial(LocalDate.now());
         emprestimo1.setDataFinal(LocalDate.now());
-        emprestimo1.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimo1.setStatus(StatusEmprestimo.EMANDAMENTO);
         emprestimo1.setValorTotal(400.00);
 
         Emprestimo emprestimo2 = new Emprestimo();
@@ -49,7 +49,7 @@ public class Emprestimo_teste {
         emprestimoService.reservaEmprestimo(emprestimo1);
         emprestimoService.reservaEmprestimo(emprestimo2);
 
-        List<Emprestimo> emprestimosModelo = new ArrayList<Emprestimo>();
+        List<Emprestimo> emprestimosModelo = new ArrayList<>();
         emprestimosModelo.add(emprestimo1);
         emprestimosModelo.add(emprestimo2);
 
@@ -64,7 +64,7 @@ public class Emprestimo_teste {
         emprestimo1.setIdEmprestimo(1L);
         emprestimo1.setDataInicial(LocalDate.now());
         emprestimo1.setDataFinal(LocalDate.now());
-        emprestimo1.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimo1.setStatus(StatusEmprestimo.EMANDAMENTO);
         emprestimo1.setValorTotal(400.00);
 
         Emprestimo emprestimo2 = new Emprestimo();
@@ -88,7 +88,7 @@ public class Emprestimo_teste {
         emprestimo1.setIdEmprestimo(1L);
         emprestimo1.setDataInicial(LocalDate.now());
         emprestimo1.setDataFinal(LocalDate.of(2021, 9,9));
-        emprestimo1.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimo1.setStatus(StatusEmprestimo.EMANDAMENTO);
         emprestimo1.setValorTotal(400.00);
 
         emprestimoService.reservaEmprestimo(emprestimo1);

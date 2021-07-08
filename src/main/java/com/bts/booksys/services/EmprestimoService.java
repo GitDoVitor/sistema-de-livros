@@ -33,7 +33,7 @@ public class EmprestimoService {
         if (emprestimoIniciado.getStatus() != StatusEmprestimo.RESERVADO) {
             throw new Exception("Emprestimo não está reservado");
         }
-        emprestimoIniciado.setStatus(StatusEmprestimo.EM_ANDAMENTO);
+        emprestimoIniciado.setStatus(StatusEmprestimo.EMANDAMENTO);
         emprestimoRepository.save(emprestimoIniciado);
     }
 
@@ -75,5 +75,28 @@ public class EmprestimoService {
         }
         emprestimoRenovado.setDataFinal(novaDataFinal);
         emprestimoRepository.save(emprestimoRenovado);
+    }
+
+    public List<Emprestimo> listaEmprestimosReservados() {
+        return emprestimoRepository.findAllByStatus_Reservado();
+    }
+
+    public List<Emprestimo> listaEmprestimosRealizados() {
+        return emprestimoRepository.findAllByStatus_Realizado();
+    }
+
+    public List<Emprestimo> listaEmprestimosCancelados() {
+        return emprestimoRepository.findAllByStatus_Cancelado();
+    }
+
+    public List<Emprestimo> listaEmprestimosAndamento() {
+        return emprestimoRepository.findAllByStatus_Andamento();
+    }
+
+    public Emprestimo finalizaEmprestimoPorId(Long id) {
+        Emprestimo emprestimoFinalizado = emprestimoRepository.findByIdEmprestimo(id);
+        emprestimoFinalizado.setStatus(StatusEmprestimo.REALIZADO);
+        emprestimoRepository.save(emprestimoFinalizado);
+        return emprestimoFinalizado;
     }
 }
